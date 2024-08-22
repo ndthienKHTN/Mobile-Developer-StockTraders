@@ -15,17 +15,6 @@ class Register extends StatelessWidget{
             Navigator.of(context).pop();
           },
         ),
-        // title:Padding(
-        //   padding: EdgeInsets.only(top: 30),
-        //   child: Center(
-        //     child: Text("Sign Up",style: TextStyle(
-        //       fontSize: 25,
-        //       fontWeight: FontWeight.bold,
-        //       color: Colors.blue,
-        //   ),
-        //   ),
-        //   ),
-        // ) ,
       ),
       body: BodyWidget(),
     );

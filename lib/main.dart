@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_login/Views/Dashboard.dart';
+import 'package:project_login/Views/Splash.dart';
 import 'Views/login_view.dart';
 import 'Views/register_view.dart';
-void main() {
+import 'package:shared_preferences/shared_preferences.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Dashboard(),
+      home: SplashScreen(),
     );
   }
 }

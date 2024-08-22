@@ -6,19 +6,14 @@ import 'package:logger/logger.dart';
 import 'package:project_login/Services/Validators/EmailValidator.dart';
 import 'package:project_login/Services/Validators/PasswordValidator.dart';
 import 'package:project_login/Services/Utilities.dart';
+import 'package:project_login/Views/Dashboard.dart';
 import 'register_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      /*appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.only(top:30),
-          child: Text('Login'),
-        ),
-        centerTitle: true,
-      ),*/
       body: BodyWidget(),
     );
   }
@@ -37,9 +32,15 @@ class _BodyWidgetState extends State<BodyWidget> {
   void _login() async{
       if(_formKey.currentState!.validate()){
         _formKey.currentState!.save();
-        AlertDialogs.showAlert(context, AlertType.info, "Login Successfully!");
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        await preferences.setBool("isLoggedIn", true);
+        if(context.mounted){
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context)=>Dashboard()),
+          );
+        }
       }else{
-        AlertDialogs.showAlert(context, AlertType.error, "Login Failed!");
+        //AlertDialogs.showAlert(context, AlertType.error, "Login Failed!");
       }
   }
   @override
@@ -228,34 +229,35 @@ class _BodyWidgetState extends State<BodyWidget> {
     bool obscureText = false,
     required TextEditingController controller,
     String? Function(String?) ? validator
-  }){
-    return Container(
-      padding: EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Icon(
-              color: Colors.grey[600],
-              iconData,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: hintText,
-                    hintStyle: TextStyle(color: Colors.grey[400]),
+    })
+    {
+      return Container(
+        padding: EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Icon(
+                color: Colors.grey[600],
+                iconData,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: hintText,
+                      hintStyle: TextStyle(color: Colors.grey[400]),
+                    ),
+                    onChanged: onChanged,
+                    obscureText: obscureText,
+                    controller: controller,
+                    validator: validator,
                   ),
-                  onChanged: onChanged,
-                  obscureText: obscureText,
-                  controller: controller,
-                  validator: validator,
-                ),
-            ),
-            if(suffixIcon != null) suffixIcon
-          ],
-        )
-        );
-    }
+              ),
+              if(suffixIcon != null) suffixIcon
+            ],
+            )
+          );
+      }
 }
