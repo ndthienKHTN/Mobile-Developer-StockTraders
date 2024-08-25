@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_login/Views/login_view.dart';
+import 'package:project_login/Views/Screen/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Dashboard.dart';
+import '../Screen/Dashboard.dart';
 
 class Menu extends StatefulWidget{
   const Menu({Key? key}) : super(key:key);

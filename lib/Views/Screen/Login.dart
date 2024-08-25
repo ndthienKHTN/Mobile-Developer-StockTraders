@@ -5,9 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:logger/logger.dart';
 import 'package:project_login/Services/Validators/EmailValidator.dart';
 import 'package:project_login/Services/Validators/PasswordValidator.dart';
-import 'package:project_login/Services/Utilities.dart';
-import 'package:project_login/Views/Dashboard.dart';
-import 'register_view.dart';
+import 'package:project_login/Services/Utilities/Utilities.dart';
+import 'package:project_login/Views/Screen/Dashboard.dart';
+import 'Register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget{
@@ -136,7 +136,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                           child: Column(
                             children: <Widget>[
                               _buildTextField(
-                                hintText: "Email or phone number",
+                                hintText: "Email",
                                 iconData: Icons.person,
                                 controller: _emailController,
                                 validator: EmailValidator.validate,
@@ -182,7 +182,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                             }, child: Text(
                             "Register",
                             style: TextStyle(
-                                color: Color.fromRGBO(143, 148, 251, 1),
+                                color: Color.fromRGBO(92, 96, 239, 1.0),
                                 fontWeight: FontWeight.bold),
                           ),
                           ),
@@ -211,7 +211,6 @@ class _BodyWidgetState extends State<BodyWidget> {
                             ),
                           ),
                       ),
-
                     ],
                   ),
               ),

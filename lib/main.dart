@@ -1,13 +1,28 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_login/Views/Dashboard.dart';
-import 'package:project_login/Views/Splash.dart';
-import 'Views/login_view.dart';
-import 'Views/register_view.dart';
+import 'package:project_login/Views/Screen/Dashboard.dart';
+import 'package:project_login/Views/Splash/Splash.dart';
+import 'package:provider/provider.dart';
+import 'Services/Websocket/Websocket_service.dart';
+import 'Views/Screen/Login.dart';
+import 'Views/Screen/Register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'firebase_options.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences preferences = await SharedPreferences.getInstance();
-  runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  //SharedPreferences preferences = await SharedPreferences.getInstance();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => StockService()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,11 +32,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Stock App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: LoginPage(),
     );
   }
 }

@@ -1,46 +1,42 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:project_login/Views/Dashboard.dart';
-import 'package:project_login/Views/login_view.dart';
-import 'package:logger/logger.dart';
-import 'package:project_login/Services/Validators/EmailValidator.dart';
-import 'package:project_login/Services/Validators/PasswordValidator.dart';
-import 'package:project_login/Services/Utilities.dart';
+import 'package:project_login/Views/Screen/Dashboard.dart';
+import 'package:project_login/Views/Screen/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'register_view.dart';
-class SplashScreen extends StatefulWidget{
-    const SplashScreen({Key? key}): super(key:key);
-    @override
-    State<StatefulWidget> createState() => _SplashScreenState();
 
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>{
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 1),() async{
+    Timer(Duration(seconds: 1), () async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      bool igLoggedIn = preferences.getBool('isLoggedIn')?? false;
-      if(igLoggedIn){
-        if(context.mounted){
+      bool igLoggedIn = preferences.getBool('isLoggedIn') ?? false;
+      if (igLoggedIn) {
+        if (context.mounted) {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context)=>Dashboard()),
+            MaterialPageRoute(builder: (context) => Dashboard()),
           );
         }
-      }else{
-        if(context.mounted){
+      } else {
+        if (context.mounted) {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context)=>LoginPage()),
+            MaterialPageRoute(builder: (context) => LoginPage()),
           );
         }
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,13 +46,11 @@ class _SplashScreenState extends State<SplashScreen>{
             child: Column(
               children: <Widget>[
                 Container(
-                  height: MediaQuery.of(context).size.height/2 - 60,
+                  height: MediaQuery.of(context).size.height / 2 - 60,
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('assets/background.png'),
-                          fit: BoxFit.fill
-                      )
-                  ),
+                          fit: BoxFit.fill)),
                   child: Stack(
                     children: <Widget>[
                       Positioned(
@@ -66,9 +60,7 @@ class _SplashScreenState extends State<SplashScreen>{
                         child: Container(
                           decoration: const BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/light-1.png')
-                              )
-                          ),
+                                  image: AssetImage('assets/light-1.png'))),
                         ),
                       ),
                       Positioned(
@@ -78,9 +70,7 @@ class _SplashScreenState extends State<SplashScreen>{
                         child: Container(
                           decoration: const BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/light-2.png')
-                              )
-                          ),
+                                  image: AssetImage('assets/light-2.png'))),
                         ),
                       ),
                       Positioned(
@@ -91,20 +81,15 @@ class _SplashScreenState extends State<SplashScreen>{
                         child: Container(
                           decoration: const BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage('assets/clock.png')
-                              )
-                          ),
+                                  image: AssetImage('assets/clock.png'))),
                         ),
                       ),
-
                     ],
                   ),
                 ),
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 }
-

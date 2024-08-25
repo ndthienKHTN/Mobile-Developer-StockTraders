@@ -32,7 +32,13 @@ dependencies:
     sdk: flutter
   logger: ^2.2.0
   shared_preferences: ^2.0.13
-
+  http: ^1.2.2
+  web_socket_channel: ^2.1.0
+  provider: ^6.0.0
+  flutter_bloc: ^8.0.0
+  charts_flutter: ^0.12.0
+  firebase_core: ^2.10.0
+  firebase_auth: ^4.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -68,8 +74,8 @@ flutter:
   - assets/clock.png
   - assets/light-1.png
   - assets/light-2.png
-  - assets/login_image.jpg
   - assets/icon_stock.png
+  - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

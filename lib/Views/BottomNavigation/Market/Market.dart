@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_tab_view/infinite_scroll_tab_view.dart';
 import 'package:logger/logger.dart';
-import 'package:project_login/Views/Component/BottomNavigation/Market/Stock_Market/Stock_Market.dart';
+import 'package:project_login/Models/Stock.dart';
+import 'package:project_login/Views/BottomNavigation/Market/Stock_Market/Stock_Market.dart';
 
 class MarketScreen extends StatefulWidget{
-  const MarketScreen({Key? key}) : super(key:key);
+  //const MarketScreen({Key? key}) : super(key:key);
+  final List<StockData> stocks;
+  final String sortColumn;
+  final bool isAscending;
+  final ValueChanged<String> onSortChanged;
+
+  MarketScreen({
+    required this.stocks,
+    required this.sortColumn,
+    required this.isAscending,
+    required this.onSortChanged,
+  });
   @override
   State<StatefulWidget> createState() => _MarketState();
 }
 
 class _MarketState extends State<MarketScreen>{
   final List<String> categories = [
-    'Stock Market',
-    'Industry',
-    'Index',
-    'Derivatives',
-    'Cover Warrants',
-    'ETF',
-    'Top Stock',
+    'Ticker',
+    'Open',
+    'Close',
+    'High',
+    'Low',
+    'Volume',
+    'Date',
   ];
   @override
   Widget build(BuildContext context) {
@@ -25,7 +37,7 @@ class _MarketState extends State<MarketScreen>{
         child: InfiniteScrollTabView(
           contentLength: categories.length,
           onTabTap: (index){
-            debugPrint('bbb');
+            debugPrint('In market Screen');
           },
           tabBuilder: (int index, bool isSelected) {
             return Text(
@@ -37,7 +49,12 @@ class _MarketState extends State<MarketScreen>{
           },
           pageBuilder: (BuildContext context, int index, _) {
             if(index == 0){
-              return StockMarket();
+              return StockMarket(
+                stocks: widget.stocks,
+                isAscending : widget.isAscending,
+                sortColumn: widget.sortColumn,
+                onSortChanged: widget.onSortChanged,
+              );
             }
             return Center(
               child: Text(
