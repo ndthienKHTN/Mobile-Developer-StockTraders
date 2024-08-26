@@ -28,4 +28,9 @@ class StockData {
       vol: json['vol'],
     );
   }
+
+  @override
+  String toString() {
+    return 'StockData{close: $close, date: $date, high: $high, low: $low, open: $open, ticker: $ticker, vol: $vol}';
+  }
 }

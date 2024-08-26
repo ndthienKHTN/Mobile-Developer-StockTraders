@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 enum AlertType{info,error,warning}
 class AlertDialogs {
-
    static void showAlert(BuildContext context, AlertType type, String message) {
     IconData icon;
     Color iconColor;
@@ -37,7 +36,7 @@ class AlertDialogs {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: const Text('OK'),
             ),
           ],
         );

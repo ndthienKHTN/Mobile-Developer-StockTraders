@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project_login/Views/Screen/Dashboard.dart';
+import 'package:project_login/Views/Screen/Dashboard/Dashboard.dart';
 import 'package:project_login/Views/Splash/Splash.dart';
 import 'package:provider/provider.dart';
 import 'Services/Websocket/Websocket_service.dart';
-import 'Views/Screen/Login.dart';
-import 'Views/Screen/Register.dart';
+import 'Views/Screen/Login/Login.dart';
+import 'Views/Screen/Register/Register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: SplashScreen(),
     );
   }
 }

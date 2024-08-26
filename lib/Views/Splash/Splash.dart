@@ -1,14 +1,11 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
-import 'package:project_login/Views/Screen/Dashboard.dart';
-import 'package:project_login/Views/Screen/Login.dart';
+import 'package:project_login/Views/Screen/Dashboard/Dashboard.dart';
+import 'package:project_login/Views/Screen/Login/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => _SplashScreenState();
@@ -18,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 1), () async {
+    Timer(const Duration(seconds: 1), () async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       bool igLoggedIn = preferences.getBool('isLoggedIn') ?? false;
       if (igLoggedIn) {
