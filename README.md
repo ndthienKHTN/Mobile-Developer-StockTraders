@@ -4,6 +4,7 @@ Sau khi clone code từ github về
 - Sử dụng Android Studio mở thư mục, bật terminal trong thư mục flutter put get để cài đặt các dependencies
 - Sử dụng Visual Studio Code mở thư mục BackEnd_Websocket_Service, bật terminal trong thư mục gõ npm install để cài đặt các package
 Để chạy ứng dụng
+- Nếu sử dụng máy ảo để chạy Android Studio thì để nguyên có thể chạy, nếu sử dụng máy thật cần thay đổi ip ở thư mục Services/Websocket/WebsocketService.dart thành localhost
 - Đầu tiên tại file websocket.js chọn run code để chạy file
 - Vào Android studio chạy file main.dart là đã chạy thành công ứng dụng
 Cách test ứng dụng

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_login/Views/Screen/Dashboard/Dashboard.dart';
 import 'package:project_login/Views/Splash/Splash.dart';
 import 'package:provider/provider.dart';
-import 'Services/Websocket/Websocket_service.dart';
+import 'Services/Websocket/WebsocketService.dart';
 import 'Views/Screen/Login/Login.dart';
 import 'Views/Screen/Register/Register.dart';
 import 'package:shared_preferences/shared_preferences.dart';

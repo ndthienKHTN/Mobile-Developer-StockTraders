@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_login/Models/Stock.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../Services/Websocket/Websocket_service.dart';
+import '../../../../Services/Websocket/WebsocketService.dart';
 import '../../../Component/DataTable/StockDataTable.dart';
 
 class HomeTicker extends StatefulWidget{

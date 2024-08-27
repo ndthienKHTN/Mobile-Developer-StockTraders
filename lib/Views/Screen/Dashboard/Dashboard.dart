@@ -5,7 +5,7 @@ import 'package:project_login/Views/BottomNavigation/Home/Home.dart';
 import 'package:project_login/Views/Component/Menu/Menu.dart';
 import 'package:project_login/Views/Component/Search/Search.dart';
 import 'package:provider/provider.dart';
-import '../../../Services/Websocket/Websocket_service.dart';
+import '../../../Services/Websocket/WebsocketService.dart';
 import '../../BottomNavigation/Chart/Chart.dart';
 
 class Dashboard extends StatefulWidget{
