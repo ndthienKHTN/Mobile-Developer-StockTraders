@@ -1,23 +1,22 @@
-// stock_service.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-
 import '../../Models/Stock.dart';
 
 class StockService with ChangeNotifier {
   WebSocketChannel? _channel;
-  List<StockData> _stocks = [];
+  List<StockData> _stocks = [];//Toàn bộ dữ liệu
   List<StockData> get stocks => _stocks;
-  List<StockData> _stocksChunk = [];
+  List<StockData> _stocksChunk = [];//Dự liệu mỗi lần load thêm
   List<StockData> get stocksChunk => _stocksChunk;
   int index = 0;
-
+  final String ip = '10.0.132.209'; // Nếu chạy bằng máy ảo, sử dụng localhost nếu chạy bằng máy thật
+  final String port = '8080';
 
   Future<void> connectToWebSocket(int index) async{
-    //await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     _channel = WebSocketChannel.connect(
-      Uri.parse('ws://10.0.132.209:8080'),  // Sử dụng địa chỉ IP của máy tính và cổng WebSocket
+      Uri.parse('ws://$ip:$port'),  // Sử dụng địa chỉ IP của máy tính và cổng WebSocket
     );
     _channel?.sink.add('$index');
     _channel?.stream.listen((data) {

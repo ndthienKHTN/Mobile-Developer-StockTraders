@@ -25,7 +25,6 @@ class _DashboardScreen extends State<Dashboard>{
   @override
   void initState() {
     super.initState();
-    //Provider.of<StockService>(context, listen: false).connectToWebSocket();
     _futureData = Provider.of<StockService>(context, listen: false).connectToWebSocket(0);
   }
   @override
@@ -33,12 +32,13 @@ class _DashboardScreen extends State<Dashboard>{
     Provider.of<StockService>(context, listen: false).disconnectFromWebSocket();
     super.dispose();
   }
-
+  //Tìm kiếm
   void _onSearchChanged(String query) {
     setState(() {
       _searchQuery = query;
     });
   }
+  //Sắp xếp
   void _onSortChanged(String column) {
     setState(() {
       if (_sortColumn == column) {
@@ -49,7 +49,6 @@ class _DashboardScreen extends State<Dashboard>{
       }
     });
   }
-
   dynamic _getField(StockData stock, String column) {
     switch (column) {
       case 'ticker':
@@ -85,13 +84,14 @@ class _DashboardScreen extends State<Dashboard>{
                 child: Text('Error: ${snapshot.error}'),
               );
           }else{
+            //Lấy dữ liệu
             stocks = Provider.of<StockService>(context).stocks;
-            // Apply search filter
+            // Tìm kiếm
             filteredStocks = stocks.where((stock) {
               final tickerMatches = stock.ticker.toLowerCase().contains(_searchQuery.toLowerCase());
               return tickerMatches;
             }).toList();
-            // Apply sorting
+            // Sắp xếp
             filteredStocks.sort((a, b) {
               final fieldA = _getField(a, _sortColumn);
               final fieldB = _getField(b, _sortColumn);
@@ -117,7 +117,7 @@ class _DashboardScreen extends State<Dashboard>{
                       ),
                     )
                 ),
-                if(_currentIndex == 0)HomeScreen(
+                if(_currentIndex == 0)HomeBar(
                       stocks: filteredStocks,
                       sortColumn: _sortColumn,
                       isAscending: _isAscending,

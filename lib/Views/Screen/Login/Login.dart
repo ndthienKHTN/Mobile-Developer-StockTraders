@@ -21,36 +21,12 @@ class BodyWidget extends StatefulWidget {
 }
 
 class _BodyWidgetState extends State<BodyWidget> {
-  bool _showPassword = false;
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  bool _showPassword = false;// Xem mật khẩu
+  final TextEditingController _emailController = TextEditingController(); //Controller cho email
+  final TextEditingController _passwordController = TextEditingController();//Controller cho password
+  final _formKey = GlobalKey<FormState>();//Kiểm soát trạng thái của form
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late String _email, _password;
-  void _login() async{
-      if(_formKey.currentState!.validate()){
-        try {
-          UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-            email: _email,
-            password: _password,
-          );
-          _formKey.currentState!.save();
-          SharedPreferences preferences = await SharedPreferences.getInstance();
-          await preferences.setBool("isLoggedIn", true);
-          if(context.mounted){
-            // Nếu đăng nhập thành công, điều hướng đến Dashboard
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context)=>Dashboard()),
-            );
-          }
-        } on FirebaseAuthException catch (e) {
-          // Xử lý lỗi đăng nhập
-          print('Failed to login: $e');
-        }
-      }else{
-        print('Email or Password not validate');
-      }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -246,8 +222,7 @@ class _BodyWidgetState extends State<BodyWidget> {
     bool obscureText = false,
     required TextEditingController controller,
     String? Function(String?) ? validator
-    })
-    {
+    }){
       return Container(
         padding: EdgeInsets.all(8.0),
           child: Row(
@@ -276,5 +251,29 @@ class _BodyWidgetState extends State<BodyWidget> {
             ],
             )
           );
+  }
+  void _login() async{
+    if(_formKey.currentState!.validate()){
+      try {
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: _email,
+          password: _password,
+        );
+        _formKey.currentState!.save();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        await preferences.setBool("isLoggedIn", true);
+        if(context.mounted){
+          // Nếu đăng nhập thành công, điều hướng đến Dashboard
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context)=>Dashboard()),
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        // Xử lý lỗi đăng nhập
+        print('Failed to login: $e');
       }
+    }else{
+      print('Email or Password not validate');
+    }
+  }
 }

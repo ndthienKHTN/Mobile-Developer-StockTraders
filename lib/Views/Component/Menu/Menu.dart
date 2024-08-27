@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_login/Views/Screen/Login/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class Menu extends StatefulWidget{
   const Menu({Key? key}) : super(key:key);
   @override
@@ -38,7 +37,7 @@ class _MenuState extends State<Menu>{
                         width: 10,
                       ),
                       const Text(
-                          "Welcom to my App",
+                          "Welcome to my App",
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -137,7 +136,7 @@ class _MenuState extends State<Menu>{
         });
       },
       child: Container(
-        color: (index== (_selectedIndex )) ? Color.fromRGBO(140, 140, 238, 1.0) : null,
+        color: (index== (_selectedIndex )) ? const Color.fromRGBO(140, 140, 238, 1.0) : null,
         child: ListTile(
           leading: Icon(icon),
           title: Text("$title"),

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class PasswordValidator {
   static String? validate(String? value) {
     if (value == null || value.isEmpty) {

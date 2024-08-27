@@ -1,8 +1,6 @@
-// stock_data_table.dart
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import '../../../Models/Stock.dart';
-import 'package:project_login/Views/Component/Search/Search.dart';
 
 
 class StockDataTable extends StatelessWidget {
@@ -12,7 +10,7 @@ class StockDataTable extends StatelessWidget {
   final ValueChanged<String> onSortChanged;
 
 
-  StockDataTable({
+  const StockDataTable({super.key,
     required this.stocks,
     required this.sortColumn,
     required this.isAscending,
