@@ -1,4 +1,5 @@
 # Project-Story-App - Nguyễn Đức Thiện
+- Link github: https://github.com/ndthienKHTN/Mobile-Developer-StockTraders.git
 IDE sử dụng : Android Studio và Visual Studio Code
 Sau khi clone code từ github về
 - Sử dụng Android Studio mở thư mục, bật terminal trong thư mục flutter put get để cài đặt các dependencies
